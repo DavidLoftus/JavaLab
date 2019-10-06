@@ -1,5 +1,8 @@
 package lab.shop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShopAssistant {
 
     private int id;
@@ -69,6 +72,25 @@ public class ShopAssistant {
     }
 
     public void serve(Customer customer) {
+        double totalCost = 0.0;
+        List<Product> filteredList = new ArrayList<Product>();
+        for (Product p : customer.getShoppingList()) {
+            if (shop.hasProduct(p)) {
+                filteredList.add(p);
+                totalCost += p.getCost();
+            } else {
+                System.out.printf("Product %s is not in stock, try again later.\n", p);
+            }
+        }
 
+        if (!customer.canPay(totalCost)) {
+            System.out.printf("Sorry you do not have enough to pay for this, total cost: %f\n", totalCost);
+            return;
+        }
+
+        shop.getCashRegister().add(totalCost);
+        for (Product p : filteredList) {
+            shop.soldProduct(p);
+        }
     }
 }

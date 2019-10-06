@@ -47,6 +47,26 @@ public class Shop {
         }
     }
 
+    public Product getBacon() {
+        return bacon;
+    }
+
+    public Product getBiscuits() {
+        return biscuits;
+    }
+
+    public Product getCoffee() {
+        return coffee;
+    }
+
+    public Product getMilk() {
+        return milk;
+    }
+
+    public Product getNewspaper() {
+        return newspaper;
+    }
+
     public void soldProduct(Product p) {
         if (!hasProduct(p)) {
             throw new IllegalArgumentException("Insufficient stock for " + p);
@@ -71,6 +91,9 @@ public class Shop {
             default:
                 throw new IllegalArgumentException("Unhandled product type " + p.getType());
         }
+
+
+
     }
 
     public CashRegister getCashRegister() {

@@ -91,5 +91,9 @@ class ShopTest {
 
         assertEquals(20.0 - cost, customer.getMoney());
         assertEquals(cost, cashRegister.getMoney());
+
+        assertEquals(8, shop.getBacon().getQuantity());
+        assertEquals(7, shop.getMilk().getQuantity());
+        assertEquals(10, shop.getBiscuits().getQuantity());
     }
 }

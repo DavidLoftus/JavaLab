@@ -83,14 +83,10 @@ public class CashRegister {
         //if insufficient transactions, print all of them
         if (noTransactions < 1) {
             System.out.println("noTransactions needs to be greater than or equal to 1");
-        } else if (noTransactions > transactions.size()) {
-            for (String transaction : transactions) {
-                System.out.println(transaction);
-            }
         } else {
-            //otherwise print the last noTransactions of transactions
-            for (int i = transactions.size() - noTransactions; i < transactions.size(); i++) {
-                System.out.println(transactions.get(i));
+            List<String> list = transactions.subList(0, Math.min(transactions.size(), noTransactions));
+            for (String transaction : list) {
+                System.out.println(transaction);
             }
         }
     }

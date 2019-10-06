@@ -88,8 +88,7 @@ public class ShopAssistant {
         }
 
         if (!customer.canPay(totalCost)) {
-            System.out.printf("Sorry you do not have enough to pay for this, total cost: %f\n", totalCost);
-            return;
+            throw new ShopException("Sorry you do not have enough money, total: " + totalCost);
         }
 
         customer.pay(totalCost);

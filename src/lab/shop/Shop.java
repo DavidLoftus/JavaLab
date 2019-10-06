@@ -100,3 +100,9 @@ public class Shop {
         return cashRegister;
     }
 }
+
+class ShopException extends RuntimeException {
+    public ShopException(String s) {
+        super(s);
+    }
+}

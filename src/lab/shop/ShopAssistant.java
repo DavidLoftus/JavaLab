@@ -83,6 +83,10 @@ public class ShopAssistant {
             }
         }
 
+        if (filteredList.isEmpty()) {
+            return;
+        }
+
         if (!customer.canPay(totalCost)) {
             System.out.printf("Sorry you do not have enough to pay for this, total cost: %f\n", totalCost);
             return;

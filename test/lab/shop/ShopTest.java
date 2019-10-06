@@ -96,4 +96,27 @@ class ShopTest {
         assertEquals(7, shop.getMilk().getQuantity());
         assertEquals(10, shop.getBiscuits().getQuantity());
     }
+
+    @Test
+    void testWalkInWithoutStock() {
+        ShopAssistant sa = new ShopAssistant(1, "John");
+        CashRegister cashRegister = new CashRegister(0.0);
+        // Shop has no stock, all purchases will silently fail
+        Shop shop = new Shop(0, cashRegister, sa);
+
+        List<Product> shoppingList = new ArrayList<Product>();
+        shoppingList.add(new Product(Product.Type.Bacon, 2));
+        shoppingList.add(new Product(Product.Type.Milk, 3));
+        double cost = Product.Type.Bacon.cost() * 2 + Product.Type.Milk.cost() * 3;
+
+        Customer customer = new Customer(shoppingList, 20.0);
+        shop.walkIn(customer);
+
+        assertEquals(20.0, customer.getMoney());
+        assertEquals(0.0, cashRegister.getMoney());
+
+        assertEquals(0, shop.getBacon().getQuantity());
+        assertEquals(0, shop.getMilk().getQuantity());
+        assertEquals(0, shop.getBiscuits().getQuantity());
+    }
 }

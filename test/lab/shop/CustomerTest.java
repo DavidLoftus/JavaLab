@@ -51,14 +51,10 @@ class CustomerTest {
         assertTrue(customer.canPay(10.0));
 
         customer.pay(5.5);
-
-        assertTrue(customer.canPay(4.5));
-        assertFalse(customer.canPay(10.0));
+        assertEquals(4.5, customer.getMoney(), 0.001);
 
         customer.pay(4.5);
-
-        assertTrue(customer.canPay(0.0));
-        assertFalse(customer.canPay(4.5));
+        assertEquals(0.0, customer.getMoney(), 0.001);
 
         assertThrows(CustomerException.class, () -> {
             customer.pay(4.5);

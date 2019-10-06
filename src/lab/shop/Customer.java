@@ -64,6 +64,10 @@ public class Customer {
         return shoppingList;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
     @Override
     public String toString() {
         return shoppingList.toString();

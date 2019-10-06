@@ -44,6 +44,9 @@ public class Customer {
     }
 
     public boolean canPay(double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("amount can't be negative");
+        }
         return amount <= money;
     }
 

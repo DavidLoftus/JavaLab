@@ -93,11 +93,31 @@ public class Shop {
         }
 
 
-
     }
 
     public CashRegister getCashRegister() {
         return cashRegister;
+    }
+
+    public void close() {
+        shopAssistant.setHoursWorked(5);
+        cashRegister.remove(shopAssistant.calculatePay());
+        System.out.println("Today’s transactions");
+        cashRegister.printLastTransactions(100);
+        System.out.println("Current Product Numbers");
+        System.out.println(bacon);
+        System.out.println(biscuits);
+        System.out.println(coffee);
+        System.out.println(milk);
+        System.out.println(newspaper);
+    }
+
+    public static void main(String[] args) {
+        Shop shop = new Shop(100, 200, new ShopAssistant(1, "Frank"));
+        for (int i = 0; i < 10; i++) {
+            shop.walkIn(new Customer());
+        }
+        shop.close();
     }
 }
 

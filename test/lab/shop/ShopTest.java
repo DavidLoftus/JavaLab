@@ -2,10 +2,12 @@ package lab.shop;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
-
     @Test
     void testConstructors() {
         ShopAssistant sa = new ShopAssistant(1, "John");
@@ -71,5 +73,23 @@ class ShopTest {
         assertThrows(IllegalArgumentException.class, () -> {
             shop.soldProduct(new Product(Product.Type.Bacon, 5));
         });
+    }
+
+    @Test
+    void testWalkIn() {
+        ShopAssistant sa = new ShopAssistant(1, "John");
+        CashRegister cashRegister = new CashRegister(0.0);
+        Shop shop = new Shop(10, cashRegister, sa);
+
+        List<Product> shoppingList = new ArrayList<Product>();
+        shoppingList.add(new Product(Product.Type.Bacon, 2));
+        shoppingList.add(new Product(Product.Type.Milk, 3));
+        double cost = Product.Type.Bacon.cost() * 2 + Product.Type.Milk.cost() * 3;
+
+        Customer customer = new Customer(shoppingList, 20.0);
+        shop.walkIn(customer);
+
+        assertEquals(20.0 - cost, customer.getMoney());
+        assertEquals(cost, cashRegister.getMoney());
     }
 }

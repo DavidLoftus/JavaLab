@@ -88,6 +88,7 @@ public class ShopAssistant {
             return;
         }
 
+        customer.pay(totalCost);
         shop.getCashRegister().add(totalCost);
         for (Product p : filteredList) {
             shop.soldProduct(p);

@@ -55,14 +55,19 @@ public class Shop {
         switch (p.getType()) {
             case Coffee:
                 coffee.setQuantity(coffee.getQuantity() - p.getQuantity());
+                break;
             case Biscuits:
                 biscuits.setQuantity(biscuits.getQuantity() - p.getQuantity());
+                break;
             case Milk:
                 milk.setQuantity(milk.getQuantity() - p.getQuantity());
+                break;
             case Bacon:
                 bacon.setQuantity(bacon.getQuantity() - p.getQuantity());
+                break;
             case Newspaper:
                 newspaper.setQuantity(newspaper.getQuantity() - p.getQuantity());
+                break;
             default:
                 throw new IllegalArgumentException("Unhandled product type " + p.getType());
         }

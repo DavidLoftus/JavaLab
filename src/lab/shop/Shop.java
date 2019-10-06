@@ -47,6 +47,28 @@ public class Shop {
         }
     }
 
+    public void soldProduct(Product p) {
+        if (!hasProduct(p)) {
+            throw new IllegalArgumentException("Insufficient stock for " + p);
+        }
 
+        switch (p.getType()) {
+            case Coffee:
+                coffee.setQuantity(coffee.getQuantity() - p.getQuantity());
+            case Biscuits:
+                biscuits.setQuantity(biscuits.getQuantity() - p.getQuantity());
+            case Milk:
+                milk.setQuantity(milk.getQuantity() - p.getQuantity());
+            case Bacon:
+                bacon.setQuantity(bacon.getQuantity() - p.getQuantity());
+            case Newspaper:
+                newspaper.setQuantity(newspaper.getQuantity() - p.getQuantity());
+            default:
+                throw new IllegalArgumentException("Unhandled product type " + p.getType());
+        }
+    }
 
+    public CashRegister getCashRegister() {
+        return cashRegister;
+    }
 }

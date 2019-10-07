@@ -72,7 +72,7 @@ public class ShopAssistant {
     }
 
     public Receipt serve(Customer customer) {
-        Receipt receipt = new Receipt();
+        Receipt receipt = new Receipt(this.name, this.id);
         for (Product p : customer.getShoppingList()) {
             if (shop.hasProduct(p)) {
                 receipt.addProduct(p);

@@ -71,30 +71,29 @@ public class ShopAssistant {
         this.shop = shop;
     }
 
-    public void serve(Customer customer) {
-        double totalCost = 0.0;
-        List<Product> filteredList = new ArrayList<Product>();
+    public Receipt serve(Customer customer) {
+        Receipt receipt = new Receipt();
         for (Product p : customer.getShoppingList()) {
             if (shop.hasProduct(p)) {
-                filteredList.add(p);
-                totalCost += p.getCost();
+                receipt.addProduct(p);
             } else {
                 System.out.printf("Product %s is not in stock, try again later.\n", p);
             }
         }
 
-        if (filteredList.isEmpty()) {
-            return;
+        double totalCost = receipt.calculateTotalCost();
+
+        if (totalCost != 0.0) {
+            if (!customer.canPay(totalCost)) {
+                throw new ShopException("Sorry you do not have enough money, total: " + totalCost);
+            }
+            customer.pay(totalCost);
+            shop.getCashRegister().add(totalCost);
         }
 
-        if (!customer.canPay(totalCost)) {
-            throw new ShopException("Sorry you do not have enough money, total: " + totalCost);
-        }
-
-        customer.pay(totalCost);
-        shop.getCashRegister().add(totalCost);
-        for (Product p : filteredList) {
+        for (Product p : receipt.getProducts()) {
             shop.soldProduct(p);
         }
+        return receipt;
     }
 }

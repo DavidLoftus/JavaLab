@@ -31,7 +31,7 @@ public class Receipt {
     }
 
     public Receipt(Receipt other) {
-        this(other.products, other.shopAssistantName, other.shopAssistantId, other.timeOfTransaction);
+        this(other.shopAssistantName, other.shopAssistantId, other.products, other.timeOfTransaction);
     }
 
     public void addProduct(Product p) {
@@ -48,5 +48,18 @@ public class Receipt {
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Receipt [");
+        stringBuilder.append(this.timeOfTransaction);
+        stringBuilder.append("], items:\n");
+        for (Product p : products) {
+            stringBuilder.append(p);
+            stringBuilder.append('\n');
+        }
+        return stringBuilder.toString();
     }
 }

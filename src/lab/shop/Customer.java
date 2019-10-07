@@ -6,13 +6,14 @@ import java.util.List;
 public class Customer {
     private List<Product> shoppingList;
     private double money;
+    private List<Receipt> receipts;
 
     @Deprecated
     public Customer() {
         shoppingList = new ArrayList<Product>();
+        receipts = new ArrayList<Receipt>();
 
         int noProducts;
-
         for (Product.Type t : Product.Type.values()) {
             //generate a random int between 0 and 2 (inclusive)
             noProducts = (int) Math.floor(Math.random() * 3);
@@ -71,6 +72,10 @@ public class Customer {
     @Override
     public String toString() {
         return shoppingList.toString();
+    }
+
+    public void giveReceipt(Receipt r) {
+
     }
 
 }

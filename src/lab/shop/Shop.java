@@ -115,7 +115,11 @@ public class Shop {
     public static void main(String[] args) {
         Shop shop = new Shop(100, 200, new ShopAssistant(1, "Frank"));
         for (int i = 0; i < 10; i++) {
-            shop.walkIn(new Customer());
+            try {
+                shop.walkIn(new Customer());
+            } catch(ShopException e) {
+                System.out.println(e.getMessage());
+            }
         }
         shop.close();
     }

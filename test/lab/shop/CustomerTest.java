@@ -15,7 +15,7 @@ class CustomerTest {
         shoppingList.add(new Product(Product.Type.Bacon, 2));
         shoppingList.add(new Product(Product.Type.Milk, 3));
 
-        Customer customer = new Customer(shoppingList, 10.0);
+        Customer customer = new RandomCustomer(shoppingList, 10.0);
 
         assertEquals(shoppingList, customer.getShoppingList());
     }
@@ -26,7 +26,7 @@ class CustomerTest {
         shoppingList.add(new Product(Product.Type.Bacon, 2));
         shoppingList.add(new Product(Product.Type.Milk, 3));
 
-        Customer customer = new Customer(shoppingList, 10.0);
+        Customer customer = new RandomCustomer(shoppingList, 10.0);
 
         assertTrue(customer.canPay(10.0));
         assertTrue(customer.canPay(0.0));
@@ -46,7 +46,7 @@ class CustomerTest {
         shoppingList.add(new Product(Product.Type.Bacon, 2));
         shoppingList.add(new Product(Product.Type.Milk, 3));
 
-        Customer customer = new Customer(shoppingList, 10.0);
+        Customer customer = new RandomCustomer(shoppingList, 10.0);
 
         assertTrue(customer.canPay(10.0));
 

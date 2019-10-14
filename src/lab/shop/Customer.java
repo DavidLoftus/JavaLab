@@ -1,87 +1,15 @@
 package lab.shop;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
-    private List<Product> shoppingList;
-    private double money;
-    private List<Receipt> receipts;
+public interface Customer {
+    List<Product> getShoppingList();
 
-    @Deprecated
-    public Customer() {
-        shoppingList = new ArrayList<Product>();
-        receipts = new ArrayList<Receipt>();
+    boolean canPay(double totalCost);
 
-        int noProducts;
-        for (Product.Type t : Product.Type.values()) {
-            //generate a random int between 0 and 2 (inclusive)
-            noProducts = (int) Math.floor(Math.random() * 3);
+    double pay(double totalCost);
 
-            if (noProducts > 0) {
-                shoppingList.add(new Product(t, noProducts));
-            }
-        }
+    void giveReceipt(Receipt receipt);
 
-        if (shoppingList.isEmpty()) {
-            shoppingList.add(new Product(Product.Type.Milk, 1));
-        }
-
-        //generate a random number between 15 and 30 (inclusive)
-        money = Math.round(Math.random() * 15) + 15;
-    }
-
-    public Customer(List<Product> shoppingList, double money) {
-        this.shoppingList = shoppingList;
-        this.money = money;
-    }
-
-    private double calculateCost() {
-        double cost = 0.0;
-        for (Product p : shoppingList) {
-            cost += p.getCost();
-        }
-        return cost;
-    }
-
-    public boolean canPay(double amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException("amount can't be negative");
-        }
-        return amount <= money;
-    }
-
-    public double pay(double amount) {
-        if (!canPay(amount)) {
-            throw new CustomerException("Customer does not have enough money.");
-        }
-
-        money -= amount;
-
-        return money;
-    }
-
-    public List<Product> getShoppingList() {
-        return shoppingList;
-    }
-
-    public double getMoney() {
-        return money;
-    }
-
-    @Override
-    public String toString() {
-        return shoppingList.toString();
-    }
-
-    public void giveReceipt(Receipt r) {
-
-    }
-
-}
-
-class CustomerException extends RuntimeException {
-    public CustomerException(String s) {
-        super(s);
-    }
+    double getMoney();
 }

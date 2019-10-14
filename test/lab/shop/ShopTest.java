@@ -86,7 +86,7 @@ class ShopTest {
         shoppingList.add(new Product(Product.Type.Milk, 3));
         double cost = Product.Type.Bacon.cost() * 2 + Product.Type.Milk.cost() * 3;
 
-        Customer customer = new Customer(shoppingList, 20.0);
+        Customer customer = new RandomCustomer(shoppingList, 20.0);
         shop.walkIn(customer);
 
         assertEquals(20.0 - cost, customer.getMoney());
@@ -109,7 +109,7 @@ class ShopTest {
         shoppingList.add(new Product(Product.Type.Milk, 3));
         double cost = Product.Type.Bacon.cost() * 2 + Product.Type.Milk.cost() * 3;
 
-        Customer customer = new Customer(shoppingList, 20.0);
+        Customer customer = new RandomCustomer(shoppingList, 20.0);
         shop.walkIn(customer);
 
         assertEquals(20.0, customer.getMoney());
@@ -132,7 +132,7 @@ class ShopTest {
         double cost = Product.Type.Bacon.cost() * 2 + Product.Type.Milk.cost() * 3;
 
         // Customer can't afford shopping list
-        Customer customer = new Customer(shoppingList, 0.0);
+        Customer customer = new RandomCustomer(shoppingList, 0.0);
 
         assertThrows(ShopException.class, () -> {
             shop.walkIn(customer);

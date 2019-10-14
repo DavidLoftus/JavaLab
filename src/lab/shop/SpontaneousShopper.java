@@ -3,27 +3,12 @@ package lab.shop;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomCustomer implements Customer {
+public class SpontaneousShopper implements Customer {
     private List<Product> shoppingList;
     private double money;
 
-    public RandomCustomer() {
-        shoppingList = new ArrayList<Product>();
-
-        int noProducts;
-        for (Product.Type t : Product.Type.values()) {
-            //generate a random int between 0 and 2 (inclusive)
-            noProducts = (int) Math.floor(Math.random() * 3);
-
-            if (noProducts > 0) {
-                shoppingList.add(new Product(t, noProducts));
-            }
-        }
-
-        if (shoppingList.isEmpty()) {
-            shoppingList.add(new Product(Product.Type.Milk, 1));
-        }
-
+    public SpontaneousShopper() {
+        shoppingList = null;
         //generate a random number between 15 and 30 (inclusive)
         money = Math.round(Math.random() * 15) + 15;
     }
@@ -57,6 +42,23 @@ public class RandomCustomer implements Customer {
 
     @Override
     public List<Product> getShoppingList() {
+        if (shoppingList == null) {
+            shoppingList = new ArrayList<Product>();
+
+            int noProducts;
+            for (Product.Type t : Product.Type.values()) {
+                //generate a random int between 0 and 2 (inclusive)
+                noProducts = (int) Math.floor(Math.random() * 3);
+
+                if (noProducts > 0) {
+                    shoppingList.add(new Product(t, noProducts));
+                }
+            }
+
+            if (shoppingList.isEmpty()) {
+                shoppingList.add(new Product(Product.Type.Milk, 1));
+            }
+        }
         return shoppingList;
     }
 
@@ -73,11 +75,5 @@ public class RandomCustomer implements Customer {
     @Override
     public String toString() {
         return shoppingList.toString();
-    }
-}
-
-class CustomerException extends RuntimeException {
-    public CustomerException(String s) {
-        super(s);
     }
 }

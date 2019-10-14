@@ -4,12 +4,11 @@ import java.util.List;
 
 public interface Customer {
     List<Product> getShoppingList();
+    void setShoppingList(List<Product> shoppingList);
 
     boolean canPay(double totalCost);
 
     double pay(double totalCost);
-
-    void giveReceipt(Receipt receipt);
 
     double getMoney();
 }

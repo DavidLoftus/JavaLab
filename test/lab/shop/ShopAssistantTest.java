@@ -41,16 +41,16 @@ class ShopAssistantTest {
         try {
             sa.setHourlyPay(100);
             fail("Workers cannot earn more than 30 per hour");
-        } catch (IllegalArgumentException ex) {}
+        } catch (IllegalArgumentException ignored) {}
 
         try {
             sa.setHourlyPay(9);
             fail("Minimum Wage is 10 per hour");
-        } catch (IllegalArgumentException ex) {}
+        } catch (IllegalArgumentException ignored) {}
 
         try {
             sa.setHoursWorked(10.5);
             fail("Shop assistants cannot work more than 10 hours per day");
-        } catch (IllegalArgumentException ex) {}
+        } catch (IllegalArgumentException ignored) {}
     }
 }

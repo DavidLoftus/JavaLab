@@ -12,3 +12,9 @@ public interface Customer {
 
     double getMoney();
 }
+
+class CustomerException extends RuntimeException {
+    public CustomerException(String s) {
+        super(s);
+    }
+}

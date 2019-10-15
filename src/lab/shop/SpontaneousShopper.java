@@ -74,6 +74,6 @@ public class SpontaneousShopper implements Customer {
 
     @Override
     public String toString() {
-        return shoppingList.toString();
+        return "SpontaneousShopper " + getShoppingList().toString();
     }
 }

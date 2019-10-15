@@ -72,12 +72,7 @@ public class RandomCustomer implements Customer {
 
     @Override
     public String toString() {
-        return shoppingList.toString();
+        return "RandomCustomer " + getShoppingList().toString();
     }
 }
 
-class CustomerException extends RuntimeException {
-    public CustomerException(String s) {
-        super(s);
-    }
-}

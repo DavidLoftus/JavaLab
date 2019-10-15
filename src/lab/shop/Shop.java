@@ -114,9 +114,38 @@ public class Shop {
 
     public static void main(String[] args) {
         Shop shop = new Shop(100, 200, new ShopAssistant(1, "Frank"));
+
+        System.out.println("Random customers:");
         for (int i = 0; i < 10; i++) {
             try {
                 shop.walkIn(new RandomCustomer());
+            } catch(ShopException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        System.out.println("Big spenders:");
+        for (int i = 0; i < 10; i++) {
+            try {
+                shop.walkIn(new BigSpender());
+            } catch(ShopException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        System.out.println("Window shoppers:");
+        for (int i = 0; i < 10; i++) {
+            try {
+                shop.walkIn(new WindowShopper());
+            } catch(ShopException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        System.out.println("Spontaneous Shoppers:");
+        for (int i = 0; i < 10; i++) {
+            try {
+                shop.walkIn(new SpontaneousShopper());
             } catch(ShopException e) {
                 System.out.println(e.getMessage());
             }

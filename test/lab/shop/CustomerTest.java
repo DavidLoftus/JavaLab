@@ -7,8 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomerTest {
-
+class GenericCustomerTest {
     @Test
     void testCustomerShoppingList() {
         List<Product> shoppingList = new ArrayList<Product>();

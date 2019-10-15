@@ -26,4 +26,9 @@ public class BigSpender extends BasicCustomer {
     public BigSpender() {
         super(randomShoppingList(), Math.round(Math.random() * 100) + 15);
     }
+
+    @Override
+    public String toString() {
+        return "BigShopper " + getShoppingList().toString();
+    }
 }

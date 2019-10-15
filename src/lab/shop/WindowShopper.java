@@ -28,4 +28,9 @@ public class WindowShopper implements Customer {
     public double getMoney() {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "WindowShopper " + getShoppingList().toString();
+    }
 }

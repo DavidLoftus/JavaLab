@@ -45,4 +45,9 @@ public class BasicCustomer implements Customer {
     public double getMoney() {
         return money;
     }
+
+    @Override
+    public String toString() {
+        return "BasicCustomer " + getShoppingList().toString();
+    }
 }
